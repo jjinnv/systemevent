@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>Register Event</title>
+<!-- linkers -->
+  <link rel="stylesheet" href="register_event.css">
+<!-- fonts -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+  #toast {
+    position: fixed;
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #16a34a; /* green-600 */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    opacity: 0;
+    transform: translate(-50%, -20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  #toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+</style>
+</head>
+<div id="toast"> 🎉 Registration submitted successfully!</div>
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const toast = document.getElementById("toast");
+
+  if (urlParams.get("success")) {
+    toast.classList.remove("hidden");
+
+    // Auto-hide toast after 4 seconds
+    setTimeout(() => {
+      toast.classList.add("hidden");
+    }, 4000);
+
+    // Remove ?success from the URL so it doesn’t show again on refresh
+    setTimeout(() => {
+      const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+      window.history.replaceState({}, document.title, newUrl);
+    }, 500);
+  }
+</script>
+<body>
+
+  <!-- Navbar -->
+<nav class="navbar glass">
+  <a href="index.html" class="nav-brand">🎓 <span>School Events</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="register_event.html">Register</a></li>
+    <li><a href="upcoming_event.php">Events</a></li>
+  </ul>
+</nav>
+
+
+  <!-- Registration Form -->
+  <section class="hero">
+    <div class="hero-content glass">
+      <h1>📝 <span>Register for an Event</span></h1>
+      <form id="registerForm" class="form" action="process_event_register.php" method="POST">
+        <div class="form-group">
+          <label for="studentName">Student Name:</label>
+          <input type="text" id="studentName" name="studentName" required />
+        </div>
+
+        <div class="form-group">
+          <label for="studentId">Student ID:</label>
+          <input type="text" id="studentId" name="studentId" required />
+        </div>
+
+        <div class="form-group">
+          <label for="numPeople">Number of People:</label>
+          <input type="number" id="numPeople" name="numPeople" min="1" required />
+        </div>
+
+        <div class="form-group">
+          <label for="eventSelection">Event:</label>
+          <select id="eventSelection" name="eventSelection" required onchange="toggleOtherInput(this, 'otherEventGroup', 'otherEvent')">
+            <option value="">-- Select Event --</option>
+            <option value="marching training">Marching Training</option>
+            <option value="latihan tambahan">Latihan Tambahan</option>
+            <option value="Other">Other Event</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="otherEventGroup" style="display: none;">
+          <label for="otherEvent">Please specify your event:</label>
+          <input type="text" id="otherEvent" name="otherEvent" />
+        </div>
+
+        <div class="form-group">
+          <label for="eventLocation">Event Location:</label>
+          <select id="eventLocation" name="eventLocation" required onchange="checkOther(this)">
+            <option value="">-- Select Location --</option>
+            <option value="Pusat Sukan">Pusat Sukan</option>
+            <option value="Dewan Phor Tay">Dewan Phor Tay</option>
+            <option value="Dewan Sri Phor Tay">Dewan Sri Phor Tay</option>
+            <option value="Sudut Bacaan">Sudut Bacaan</option>
+            <option value="Basketball Court">Basketball Court</option>
+            <option value="Other">Other Place</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="otherPlaceGroup" style="display: none;">
+          <label for="otherPlace">Please specify your place:</label>
+          <input type="text" id="otherPlace" name="otherPlace" />
+        </div>
+
+        <button type="submit">✅ Submit Registration</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="glass-footer">
+    <p>📩 Contact us: <a href="mailto:eventadmin@school.edu.my">smjkphortay@school.edu.my</a></p>
+    <div class="social-icons">
+      <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+    <p>🌟 Created with love by Team ET </p>
+  </footer>
+
+  <!--navbar glass-->
+
+  <style>
+       /* Navbar Glass */
+
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(15,23,42,0.6);
+      backdrop-filter: blur(8px);
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+
+    .nav-brand {
+      font-size: 1.5rem;
+      color: #00bfff;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links li a:hover {
+      color: #00bfff;
+
+    }
+
+
+
+    main {
+      padding: 120px 20px 40px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      color: #00bfff;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .event-card {
+      background: #1e2a3a;
+      border-left: 4px solid #00bfff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      margin-bottom: 20px;
+      transition: transform 0.2s;
+    }
+
+    .event-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .event-card h3 {
+      color: #00bfff;
+      margin: 0 0 10px;
+    }
+
+    .event-card p {
+      margin: 6px 0;
+      color: #d3d3d3;
+    }
+
+    .event-card p b {
+      color: white;
+    }
+
+    .glass-footer {
+      text-align: center;
+      padding: 30px;
+      background: rgba(0, 0, 30, 0.8);
+      color: #aaa;
+      font-size: 0.95rem;
+      margin-top: 50px;
+    }
+
+    .glass-footer a {
+      color: #00bfff;
+      text-decoration: none;
+    }
+
+    .glass-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .social-icons {
+      margin: 10px 0;
+    }
+
+    .social-icons a {
+      margin: 0 8px;
+      color: #00bfff;
+      font-size: 1.2rem;
+    }
+
+    .social-icons a:hover {
+      color: white;
+    }
+    
+    
+  </style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const toast = document.getElementById("toast");
+    const urlParams = new URLSearchParams(window.location.search);
+    const successMsg = urlParams.get("success");
+
+    if (successMsg && toast) {
+      toast.textContent = decodeURIComponent(successMsg);
+      toast.classList.add("show");
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 3000);
+
+      // Remove the query parameter without refreshing the page
+      const newURL = window.location.origin + window.location.pathname;
+      window.history.replaceState({}, document.title, newURL);
+    }
+  });
+</script>
+
+</body>
+</html>

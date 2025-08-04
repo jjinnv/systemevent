@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>School Event System</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upcoming Events</title>
+</head>
+
+</head>
+<body>
+
+  <!-- Navbar -->
+<nav class="navbar glass">
+  <a href="index.html" class="nav-brand">🎓 <span>School Events</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="login.php">Register</a></li>
+    <li><a href="upcoming_event.php">Events</a></li>
+  </ul>
+</nav>
+
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="bg-animated"></div>
+    <div class="hero-content glass">
+      <h1>🎉 Welcome to <span>School Event System</span></h1>
+      <p>⚡ Seamlessly manage, join, and explore events around your school community.</p>
+      <button onclick="goToEvents()">🚀 Explore Events</button>
+  </div>
+
+  <script>
+    function goToEvents() {
+      window.location.href = "login.php";
+    }
+  </script>
+  </section>
+
+  <!-- Footer -->
+  <footer class="glass-footer">
+    <p>📩 Contact us: <a href="mailto:eventadmin@school.edu.my">smjkphortay@school.edu.my</a></p>
+    <div class="social-icons">
+      <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+    <p>🌟 Created with love by Team ET </p>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <style>
+
+    /* Navbar Glass */
+
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+
+    .nav-brand {
+      font-size: 1.5rem;
+      color: #00bfff;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links li a:hover {
+      color: #00bfff;
+    }
+
+    main {
+      padding: 120px 20px 40px;
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      color: #00bfff;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .event-card {
+      background: #1e2a3a;
+      border-left: 4px solid #00bfff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      margin-bottom: 20px;
+      transition: transform 0.2s;
+    }
+
+    .event-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .event-card h3 {
+      color: #00bfff;
+      margin: 0 0 10px;
+    }
+
+    .event-card p {
+      margin: 6px 0;
+      color: #d3d3d3;
+    }
+
+    .event-card p b {
+      color: white;
+    }
+
+    .glass-footer {
+      text-align: center;
+      padding: 30px;
+      background: rgba(0, 0, 30, 0.8);
+      color: #aaa;
+      font-size: 0.95rem;
+      margin-top: 50px;
+    }
+
+    .glass-footer a {
+      color: #00bfff;
+      text-decoration: none;
+    }
+
+    .glass-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .social-icons {
+      margin: 10px 0;
+    }
+
+    .social-icons a {
+      margin: 0 8px;
+      color: #00bfff;
+      font-size: 1.2rem;
+    }
+
+    .social-icons a:hover {
+      color: white;
+    }
+
+    .glass {
+  backdrop-filter: blur(16px);
+  background-color: rgba(15, 23, 42, 0.6); /* Dark glass effect */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@keyframes slideInFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.navbar {
+  animation: slideInFromTop 0.7s ease-out;
+}
+
+  </style>
+  
+</body>
+</html>
